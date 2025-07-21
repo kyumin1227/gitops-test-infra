@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://kafbat.github.io/helm-charts
       targetRevision: 1.5.0
-      chart: kafbat-ui
+      chart: kafka-ui
       helm:
         releaseName: kafbat-ui
         valueFiles:
