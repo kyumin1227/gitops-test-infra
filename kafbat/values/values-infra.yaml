@@ -38,8 +38,7 @@ yamlApplicationConfig:
   kafka:
     clusters:
       - name: kafka
-        bootstrapServers:
-          - kafka.kafka-infra.svc.cluster.local:9092
+        bootstrapServers: kafka.kafka-infra.svc.cluster.local:9092
   auth:
     type: disabled
   management:
