@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infra
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 32.3.2
+      chart: kafka
+      helm:
+        releaseName: kafka
+        valueFiles:
+          - $values/kafka/values/values-infra.yaml
+    - repoURL: https://github.com/kyumin1227/gitops-test-infra.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infra
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

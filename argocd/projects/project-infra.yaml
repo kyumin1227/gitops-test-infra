@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra
+  namespace: argocd
+spec:
+  description: "prod, dev, test 환경 공통 인프라"
+  sourceRepos:
+    - https://charts.bitnami.com/bitnami
+    - https://github.com/kyumin1227/gitops-test-infra.git
+  destinations:
+    - namespace: infra
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

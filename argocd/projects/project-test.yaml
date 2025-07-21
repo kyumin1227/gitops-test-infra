@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: test
+  namespace: argocd
+spec:
+  description: "Test AppProject"
+  sourceRepos:
+    - https://charts.bitnami.com/bitnami
+    - https://github.com/kyumin1227/gitops-test-infra.git
+  destinations:
+    - namespace: test
+      server: https://kubernetes.default.svc
+    - namespace: kafka-test
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
